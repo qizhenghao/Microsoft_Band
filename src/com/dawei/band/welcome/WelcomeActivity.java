@@ -7,6 +7,7 @@ import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -136,17 +137,37 @@ public class WelcomeActivity extends Activity {
             }
         }
     };
+
+    static List<Entry> heartRateList = new ArrayList<>();
+    static {
+        for (int i=0;i<60;i++) {
+            Entry entry = new Entry(i, 0);
+            heartRateList.add(entry);
+        }
+    }
+    private long lastRefreshTime;
+
     /**
      * 心率
      */
     @SuppressWarnings("unused")
     private BandHeartRateEventListener mHeartRateEventListener = new BandHeartRateEventListener(){
         @Override
-        public void onBandHeartRateChanged(BandHeartRateEvent event) {
-            // TODO Auto-generated method stub
+        public void onBandHeartRateChanged(final BandHeartRateEvent event) {
             if(event != null){
                 appendToUI(String.format(" 心率：\n heart rate = %d", event.getHeartRate()), txtStatusHeartRate);
                 SendSensorData(String.format("r %d", event.getHeartRate()));
+                if (System.currentTimeMillis() - lastRefreshTime > 1000) {
+                    lastRefreshTime = System.currentTimeMillis();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            heartRateList.add(new Entry(heartRateList.size(), event.getHeartRate()));
+                            setData(heartRateList.subList(heartRateList.size() - 60, heartRateList.size()));
+                            mChart.invalidate();
+                        }
+                    });
+                }
             }
         }
     };
@@ -216,7 +237,7 @@ public class WelcomeActivity extends Activity {
         mChart.getAxisRight().setEnabled(false);
 
         // add data
-        setData(45, 100);
+        testSetData(45, 100);
 
         mChart.getLegend().setEnabled(false);
 
@@ -226,7 +247,52 @@ public class WelcomeActivity extends Activity {
         mChart.invalidate();
     }
 
-    private void setData(int count, float range) {
+    private void setData(List<Entry> yVals) {
+
+        LineDataSet set1;
+
+        if (mChart.getData() != null &&
+                mChart.getData().getDataSetCount() > 0) {
+            set1 = (LineDataSet)mChart.getData().getDataSetByIndex(0);
+            set1.setValues(yVals);
+            mChart.getData().notifyDataChanged();
+            mChart.notifyDataSetChanged();
+        } else {
+            // create a dataset and give it a type
+            set1 = new LineDataSet(yVals, "DataSet 1");
+
+            set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set1.setCubicIntensity(0.2f);
+            //set1.setDrawFilled(true);
+            set1.setDrawCircles(false);
+            set1.setLineWidth(1.8f);
+            set1.setCircleRadius(4f);
+            set1.setCircleColor(Color.WHITE);
+            set1.setHighLightColor(Color.rgb(244, 117, 117));
+            set1.setColor(Color.WHITE);
+            set1.setFillColor(Color.WHITE);
+            set1.setFillAlpha(100);
+            set1.setDrawHorizontalHighlightIndicator(false);
+            set1.setFillFormatter(new FillFormatter() {
+                @Override
+                public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
+                    return -10;
+                }
+            });
+
+            // create a data object with the datasets
+            LineData data = new LineData(set1);
+            data.setValueTypeface(mTfLight);
+            data.setValueTextSize(9f);
+            data.setDrawValues(false);
+
+            // set data
+            mChart.setData(data);
+        }
+    }
+
+
+    private void testSetData(int count, float range) {
 
         ArrayList<Entry> yVals = new ArrayList<Entry>();
 
