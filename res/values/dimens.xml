@@ -4,4 +4,31 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="common_button_radius">4dp</dimen>
+    <!--通用button尺寸-->
+    <dimen name="common_button_width_small">50dp</dimen>
+    <dimen name="common_button_width_middle">150dp</dimen>
+    <dimen name="common_button_width_big">300dp</dimen>
+    <dimen name="common_button_height_small">30dp</dimen>
+    <dimen name="common_button_height_middle">32dp</dimen>
+    <dimen name="common_button_height_big">40dp</dimen>
+
+    <dimen name="common_button_font_small">12sp</dimen>
+    <dimen name="common_button_font_middle">14sp</dimen>
+    <dimen name="common_button_font_big">16sp</dimen>
+
+    <!--通用textview尺寸-->
+    <dimen name="common_tv_width_small">50dp</dimen>
+    <dimen name="common_tv_width_middle">150dp</dimen>
+    <dimen name="common_tv_width_big">300dp</dimen>
+    <dimen name="common_tv_height_small">30dp</dimen>
+    <dimen name="common_tv_height_middle">32dp</dimen>
+    <dimen name="common_tv_height_big">40dp</dimen>
+
+    <dimen name="common_tv_font_small">12sp</dimen>
+    <dimen name="common_tv_font_middle">14sp</dimen>
+    <dimen name="common_tv_font_big">16sp</dimen>
 </resources>

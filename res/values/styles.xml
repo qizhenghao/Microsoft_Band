@@ -17,4 +17,108 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <!--************************************* progressbar **********************************-->
+    <style name="progressBar" parent="@android:style/Widget.ProgressBar">
+        <item name="android:indeterminateDuration">1000</item>
+        <item name="android:indeterminateDrawable">@drawable/progress_bar_anim</item>
+    </style>
+    <!--************************************* Button **********************************-->
+    <style name="common_button">
+        <item name="android:gravity">center</item>
+    </style>
+    <!--小：50*30，字体13dp-->
+    <style name="common_small_button" parent="common_button">
+        <item name="android:layout_width">@dimen/common_button_width_small</item>
+        <item name="android:layout_height">@dimen/common_button_height_small</item>
+        <item name="android:textSize">@dimen/common_button_font_small</item>
+    </style>
+
+    <!--中：105*32，字体13dp-->
+    <style name="common_middle_button" parent="common_button">
+        <item name="android:layout_width">@dimen/common_button_width_middle</item>
+        <item name="android:layout_height">@dimen/common_button_height_middle</item>
+        <item name="android:textSize">@dimen/common_button_font_middle</item>
+    </style>
+    <!--大：屏幕宽度*40，字体16dp-->
+    <style name="common_big_button" parent="common_button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/common_button_height_big</item>
+        <item name="android:textSize">@dimen/common_button_font_big</item>
+    </style>
+
+    <!--蓝色按钮，无尺寸-->
+    <style name="common_blue_button" parent="common_button">
+        <item name="android:background">@drawable/common_btn_blue_selector</item>
+        <item name="android:textColor">@color/common_btn_font_white_selector</item>
+    </style>
+    <!--蓝色按钮，小尺寸-->
+    <style name="common_blue_small_button" parent="common_small_button">
+        <item name="android:background">@drawable/common_btn_blue_selector</item>
+        <item name="android:textColor">@color/common_btn_font_white_selector</item>
+    </style>
+    <!--蓝色按钮，中尺寸-->
+    <style name="common_blue_middle_button" parent="common_middle_button">
+        <item name="android:background">@drawable/common_btn_blue_selector</item>
+        <item name="android:textColor">@color/common_btn_font_white_selector</item>
+    </style>
+    <!--蓝色按钮，大尺寸-->
+    <style name="common_blue_big_button" parent="common_big_button">
+        <item name="android:background">@drawable/common_btn_blue_selector</item>
+        <item name="android:textColor">@color/common_btn_font_white_selector</item>
+    </style>
+
+    <!--************************************* TextView **********************************-->
+    <style name="common_tv">
+        <item name="android:gravity">center</item>
+    </style>
+    <!--小：50*30，字体13dp-->
+    <style name="common_small_tv" parent="common_tv">
+        <item name="android:layout_width">@dimen/common_tv_width_small</item>
+        <item name="android:layout_height">@dimen/common_tv_height_small</item>
+        <item name="android:textSize">@dimen/common_tv_font_small</item>
+    </style>
+
+    <!--中：105*32，字体13dp-->
+    <style name="common_middle_tv" parent="common_tv">
+        <item name="android:layout_width">@dimen/common_tv_width_middle</item>
+        <item name="android:layout_height">@dimen/common_tv_height_middle</item>
+        <item name="android:textSize">@dimen/common_tv_font_middle</item>
+    </style>
+    <!--大：屏幕宽度*40，字体16dp-->
+    <style name="common_big_tv" parent="common_tv">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/common_tv_height_big</item>
+        <item name="android:textSize">@dimen/common_tv_font_big</item>
+    </style>
+
+    <!--白色背景蓝色框的TextView，无尺寸-->
+    <style name="common_blue_tv" parent="common_tv">
+        <item name="android:background">@drawable/common_tv_bg_selector</item>
+        <item name="android:textColor">@color/common_font_black_selector</item>
+    </style>
+    <!--白色背景蓝色框的TextView，小尺寸-->
+    <style name="common_blue_small_tv" parent="common_small_tv">
+        <item name="android:background">@drawable/common_tv_bg_selector</item>
+        <item name="android:textColor">@color/common_font_black_selector</item>
+    </style>
+    <!--白色背景蓝色框的TextView，中尺寸-->
+    <style name="common_blue_middle_tv" parent="common_middle_tv">
+        <item name="android:background">@drawable/common_tv_bg_selector</item>
+        <item name="android:textColor">@color/common_font_black_selector</item>
+    </style>
+    <!--白色背景蓝色框的TextView，大尺寸-->
+    <style name="common_blue_big_tv" parent="common_big_tv">
+        <item name="android:background">@drawable/common_tv_bg_selector</item>
+        <item name="android:textColor">@color/common_font_black_selector</item>
+    </style>
+
+    <style name="mortgage_calculate_tv" parent="common_tv">
+        <item name="android:width">150dp</item>
+        <item name="android:height">40dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="bottom_line_color">@color/blue_light</item>
+        <item name="bottom_line_width">140dp</item>
+        <item name="bottom_line_height">2dp</item>
+    </style>
 </resources>

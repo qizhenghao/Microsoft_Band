@@ -11,4 +11,8 @@
         4. Data from the accelerometer sensor should be displayed.</string>
     <string name="start">Start</string>
     <string name="consent">Heart Rate Consent</string>
+
+    <string name="my_mortgage">心率</string>
+    <string name="mortgage_calculate">加速度</string>
+    <string name="recommend">角速度</string>
 </resources>

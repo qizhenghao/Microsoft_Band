@@ -141,7 +141,7 @@ public class WelcomeActivity extends Activity {
     static List<Entry> heartRateList = new ArrayList<>();
     static {
         for (int i=0;i<60;i++) {
-            Entry entry = new Entry(i, 0);
+            Entry entry = new Entry(i, 70);
             heartRateList.add(entry);
         }
     }
@@ -157,7 +157,7 @@ public class WelcomeActivity extends Activity {
             if(event != null){
                 appendToUI(String.format(" 心率：\n heart rate = %d", event.getHeartRate()), txtStatusHeartRate);
                 SendSensorData(String.format("r %d", event.getHeartRate()));
-                if (System.currentTimeMillis() - lastRefreshTime > 1000) {
+                if (System.currentTimeMillis() - lastRefreshTime > 200) {
                     lastRefreshTime = System.currentTimeMillis();
                     runOnUiThread(new Runnable() {
                         @Override
@@ -237,7 +237,8 @@ public class WelcomeActivity extends Activity {
         mChart.getAxisRight().setEnabled(false);
 
         // add data
-        testSetData(45, 100);
+//        testSetData(45, 100);
+        setData(heartRateList);
 
         mChart.getLegend().setEnabled(false);
 

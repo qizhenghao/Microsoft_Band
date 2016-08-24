@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <com.dawei.band.desktop.view.DesktopTabHost
+        android:id="@+id/tab_page_indicator"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/tab_text_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="36dp"
+            android:background="@color/blue_light">
+
+            <TextView
+                android:id="@+id/tab_one"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/mortgage_calculate"
+                android:textColor="@color/common_font_white_selector"
+                android:textSize="16sp"/>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white_pressed"/>
+
+            <TextView
+                android:id="@+id/tab_two"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/my_mortgage"
+                android:textColor="@color/common_font_white_selector"
+                android:textSize="16sp"/>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white_pressed"/>
+
+            <TextView
+                android:id="@+id/tab_three"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/recommend"
+                android:textColor="@color/common_font_white_selector"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <View
+            android:visibility="gone"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tab_text_layout"
+            android:layout_marginTop="3dp"
+            android:background="@color/common_divider"/>
+
+        <com.dawei.band.desktop.view.LineViewPagerIndicator
+            android:id="@+id/tab_line_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="3dp"
+            android:layout_below="@id/tab_text_layout">
+        </com.dawei.band.desktop.view.LineViewPagerIndicator>
+    </com.dawei.band.desktop.view.DesktopTabHost>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    </android.support.v4.view.ViewPager>
+</LinearLayout>
