@@ -41,11 +41,6 @@ public class HeartRateFragment extends BaseFragment {
     private List<Entry> heartRateList;
     private Typeface mTfLight;
 
-    public HeartRateFragment(BandClient client) {
-        this.client = client;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContentView = inflater.inflate(R.layout.fragment_heart_rate_layout, null);
@@ -88,25 +83,26 @@ public class HeartRateFragment extends BaseFragment {
 
         mChart.getAxisRight().setEnabled(false);
 
-        // add data
-//        testSetData(45, 100);
-        setData(heartRateList);
-
         mChart.getLegend().setEnabled(false);
 
         mChart.animateXY(2000, 2000);
 
-        // dont forget to refresh the drawing
-        mChart.invalidate();
     }
 
     @Override
     protected void initData() {
+        client = BandApplication.client;
         heartRateList = new ArrayList<>();
         for (int i = 0; i < 60; i++) {
             Entry entry = new Entry(i, 70);
             heartRateList.add(entry);
         }
+
+        // add data
+        setData(heartRateList);
+        mChart.invalidate();
+        if (client == null)
+            return;
         try {
             client.getSensorManager().registerHeartRateEventListener(mHeartRateEventListener);
         } catch (BandException e) {
@@ -127,12 +123,11 @@ public class HeartRateFragment extends BaseFragment {
     /**
      * 心率
      */
-    @SuppressWarnings("unused")
     private BandHeartRateEventListener mHeartRateEventListener = new BandHeartRateEventListener() {
         @Override
         public void onBandHeartRateChanged(final BandHeartRateEvent event) {
             if (event != null) {
-                if (System.currentTimeMillis() - lastRefreshTime > 200) {
+                if (System.currentTimeMillis() - lastRefreshTime > 1000) {
                     lastRefreshTime = System.currentTimeMillis();
                     mActivity.runOnUiThread(new Runnable() {
                         @Override

@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/mortgage_calculate"
+                android:text="@string/heart_rate"
                 android:textColor="@color/common_font_white_selector"
                 android:textSize="16sp"/>
 
@@ -39,7 +39,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/my_mortgage"
+                android:text="@string/acceleration"
                 android:textColor="@color/common_font_white_selector"
                 android:textSize="16sp"/>
 
@@ -56,7 +56,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/recommend"
+                android:text="@string/angular_velocity"
                 android:textColor="@color/common_font_white_selector"
                 android:textSize="16sp"/>
         </LinearLayout>

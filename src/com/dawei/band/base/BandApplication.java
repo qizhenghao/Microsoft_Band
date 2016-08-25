@@ -12,6 +12,7 @@ import com.microsoft.band.BandClient;
 public class BandApplication extends Application {
 
     public static BandApplication INSTANCE;
+    public static BandClient client;
     private static BandApplication mContext;
     private static Handler mApplicationHandler;
 

@@ -1,16 +1,21 @@
 package com.dawei.band.desktop;
 
 import android.app.Dialog;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 
 import com.dawei.band.R;
+import com.dawei.band.accelerate.AccelerateFragment;
+import com.dawei.band.angularVelocity.AngularVelocityFragment;
+import com.dawei.band.base.BandApplication;
 import com.dawei.band.base.BaseFragment;
 import com.dawei.band.desktop.adapter.BaseFramentPagerAdapter;
 import com.dawei.band.desktop.view.DesktopTabHost;
@@ -35,9 +40,9 @@ public class DesktopActivity extends AppCompatActivity implements View.OnClickLi
     private BaseFramentPagerAdapter viewPagerAdapter;
     private List<BaseFragment> fragmentList;
 
-    private HeartRateFragment mortgageCalculateFragment;
-    private HeartRateFragment myMortgageFragment;
-    private HeartRateFragment recommendFragment;
+    private HeartRateFragment heartRateFragment;
+    private AccelerateFragment accelerateFragment;
+    private AngularVelocityFragment angularVelocityFragment;
     private BandClient client;
     private Dialog connectDialog;
 
@@ -49,21 +54,24 @@ public class DesktopActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_desktop_layout);
         initViews();
         setListener();
-        showConnectDialog();
+        if (BandApplication.client == null)
+            showConnectDialog();
+        else
+            initData();
     }
 
     private void setListener() {
 
     }
 
-    private void initData(BandClient client) {
-        mortgageCalculateFragment = new HeartRateFragment(client);
-        myMortgageFragment = new HeartRateFragment(client);
-        recommendFragment = new HeartRateFragment(client);
+    private void initData() {
+        heartRateFragment = new HeartRateFragment();
+        accelerateFragment = new AccelerateFragment();
+        angularVelocityFragment = new AngularVelocityFragment();
         fragmentList = new ArrayList<>();
-        fragmentList.add(mortgageCalculateFragment);
-        fragmentList.add(myMortgageFragment);
-        fragmentList.add(recommendFragment);
+        fragmentList.add(heartRateFragment);
+        fragmentList.add(accelerateFragment);
+        fragmentList.add(angularVelocityFragment);
 
         viewPagerAdapter = new BaseFramentPagerAdapter(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapter);
@@ -127,7 +135,7 @@ public class DesktopActivity extends AppCompatActivity implements View.OnClickLi
                         @Override
                         public void run() {
                             connectDialog.dismiss();
-                            initData(client);
+                            initData();
                         }
                     });
 //                    client.getSensorManager().registerAccelerometerEventListener(mAccelerometerEventListener, SampleRate.MS16);
@@ -171,6 +179,7 @@ public class DesktopActivity extends AppCompatActivity implements View.OnClickLi
                 return false;
             }
             client = BandClientManager.getInstance().create(getBaseContext(), devices[0]);
+            BandApplication.client = client;
         } else if (ConnectionState.CONNECTED == client.getConnectionState()) {
             return true;
         }
@@ -208,6 +217,7 @@ public class DesktopActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d("Bruce", "onDestroy");
         if (client != null) {
             try {
                 client.disconnect().await();
@@ -216,6 +226,18 @@ public class DesktopActivity extends AppCompatActivity implements View.OnClickLi
             } catch (BandException e) {
                 // Do nothing as this is happening during destroy
             }
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.d("Bruce", "onConfigurationChanged");
+        //切换为竖屏
+        if (newConfig.orientation == this.getResources().getConfiguration().ORIENTATION_PORTRAIT) {
+
+        } else if (newConfig.orientation == this.getResources().getConfiguration().ORIENTATION_LANDSCAPE) {
+
         }
     }
 }

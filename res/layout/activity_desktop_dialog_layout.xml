@@ -1,9 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/activity_desktop_dialog_top_layout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/common_white_round_bg"
@@ -16,22 +17,27 @@
             android:layout_margin="15dp"
             android:text="@string/steps"/>
 
-        <Button
-            android:id="@+id/activity_desktop_dialog_start_btn"
-            style="@style/common_blue_button"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="15dp"
-            android:text="@string/start"/>
-
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/activity_desktop_dialog_start_btn"
+                style="@style/common_blue_button"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="15dp"
+                android:text="@string/start"/>
+        </FrameLayout>
     </LinearLayout>
 
     <ImageView
+        android:layout_below="@id/activity_desktop_dialog_top_layout"
         android:id="@+id/activity_desktop_dialog_cancle_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/dialog_desktop_actiivies_ad_cancle_icon"/>
-</LinearLayout>
+
+</RelativeLayout>
 
