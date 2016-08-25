@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- import from StickyHeaderListView project-->
+    <color name="colorPrimary">#35a2e7</color>
+    <color name="colorPrimaryDark">#8035a2e7</color>
+    <color name="colorAccent">#4035a2e7</color>
+
     <color name="tab_ling_color">#5bf27f</color>
     <color name="common_divider">#dcdde2</color>
 
@@ -59,4 +64,6 @@
     <color name="gold_60">#ffd600</color>
     <color name="profile_watch">#ffda19</color>
     <color name="profile_both_watch">#d4d7d9</color>
+
+    <color name="transparent">#00000000</color>
 </resources>

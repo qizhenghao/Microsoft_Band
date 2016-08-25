@@ -10,10 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,6 +23,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.dawei.band.R;
+import com.dawei.band.base.BandApplication;
+import com.dawei.band.desktop.DesktopActivity;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -33,7 +37,6 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.microsoft.band.BandClient;
 import com.microsoft.band.BandClientManager;
 import com.microsoft.band.BandException;
-import com.microsoft.band.BandIOException;
 import com.microsoft.band.BandInfo;
 import com.microsoft.band.ConnectionState;
 import com.microsoft.band.sensors.BandAccelerometerEvent;
@@ -45,7 +48,6 @@ import com.microsoft.band.sensors.BandGyroscopeEventListener;
 import com.microsoft.band.sensors.BandHeartRateEvent;
 import com.microsoft.band.sensors.BandHeartRateEventListener;
 import com.microsoft.band.sensors.HeartRateConsentListener;
-import com.microsoft.band.sensors.SampleRate;
 
 public class WelcomeActivity extends Activity {
 
@@ -71,6 +73,20 @@ public class WelcomeActivity extends Activity {
         } catch (SocketException e) {
             e.printStackTrace();
         }
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_welcome_layout);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(WelcomeActivity.this, DesktopActivity.class));
+                finish();
+            }
+        }, 1000);
     }
 
     /**
@@ -172,82 +188,6 @@ public class WelcomeActivity extends Activity {
         }
     };
 
-    @SuppressWarnings("unchecked")
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        txtStatus = (TextView) findViewById(R.id.txtStatus);
-        txtStatusGyr = (TextView) findViewById(R.id.txtStatus_Gyr);
-        txtStatusAlti = (TextView) findViewById(R.id.txtStatus_Alti);
-        txtStatusHeartRate = (TextView) findViewById(R.id.txtStatus_HeartRate);
-        txtIpInpuText = (EditText) findViewById(R.id.txtIp_input);
-
-
-        btnStart = (Button) findViewById(R.id.btnStart);
-        btnStart.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ServerIP = txtIpInpuText.getText().toString();//获取输入字符串
-                txtStatus.setText("");
-                new AccelerometerSubscriptionTask().execute();
-            }
-        });
-
-        final WeakReference<Activity> reference = new WeakReference<Activity>(WelcomeActivity.this);
-        new HeartRateConsentTask().execute(reference);
-        initViews();
-    }
-
-    private void initViews() {
-
-        mChart = (LineChart) findViewById(R.id.chart1);
-        mChart.setViewPortOffsets(0, 0, 0, 0);
-        mChart.setBackgroundColor(Color.rgb(104, 241, 175));
-
-        // no description text
-        mChart.setDescription("");
-
-        // enable touch gestures
-        mChart.setTouchEnabled(true);
-
-        // enable scaling and dragging
-        mChart.setDragEnabled(true);
-        mChart.setScaleEnabled(true);
-
-        // if disabled, scaling can be done on x- and y-axis separately
-        mChart.setPinchZoom(false);
-
-        mChart.setDrawGridBackground(false);
-        mChart.setMaxHighlightDistance(300);
-
-        XAxis x = mChart.getXAxis();
-        x.setEnabled(false);
-
-        YAxis y = mChart.getAxisLeft();
-        mTfLight = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
-        y.setTypeface(mTfLight);
-        y.setLabelCount(6, false);
-        y.setTextColor(Color.WHITE);
-        y.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
-        y.setDrawGridLines(false);
-        y.setAxisLineColor(Color.WHITE);
-
-        mChart.getAxisRight().setEnabled(false);
-
-        // add data
-//        testSetData(45, 100);
-        setData(heartRateList);
-
-        mChart.getLegend().setEnabled(false);
-
-        mChart.animateXY(2000, 2000);
-
-        // dont forget to refresh the drawing
-        mChart.invalidate();
-    }
-
     private void setData(List<Entry> yVals) {
 
         LineDataSet set1;
@@ -347,29 +287,20 @@ public class WelcomeActivity extends Activity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        txtStatus.setText("");
-        appendToUI("",txtStatusGyr);
-        appendToUI("",txtStatusAlti);
-        appendToUI("",txtStatusHeartRate);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (client != null) {
-            try {
-                client.getSensorManager().unregisterAccelerometerEventListener(mAccelerometerEventListener);
-                client.getSensorManager().unregisterGyroscopeEventListener(mGyroscopeEventListener);
-                client.getSensorManager().unregisterAltimeterEventListener(mAltimeterEventListener);
-                //client.getSensorManager().unregisterHeartRateEventListener(mHeartRateEventListener);
-            } catch (BandIOException e) {
-                appendToUI(e.getMessage());
-            }
-        }
-    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        if (client != null) {
+//            try {
+//                client.getSensorManager().unregisterAccelerometerEventListener(mAccelerometerEventListener);
+//                client.getSensorManager().unregisterGyroscopeEventListener(mGyroscopeEventListener);
+//                client.getSensorManager().unregisterAltimeterEventListener(mAltimeterEventListener);
+//                //client.getSensorManager().unregisterHeartRateEventListener(mHeartRateEventListener);
+//            } catch (BandIOException e) {
+//                appendToUI(e.getMessage());
+//            }
+//        }
+//    }
     /**
      *
      * 连接band，绑定事件
@@ -381,10 +312,12 @@ public class WelcomeActivity extends Activity {
             try {
                 if (getConnectedBandClient()) {
                     appendToUI("Band is connected.\n");
-                    client.getSensorManager().registerAccelerometerEventListener(mAccelerometerEventListener, SampleRate.MS16);
-                    client.getSensorManager().registerGyroscopeEventListener(mGyroscopeEventListener, SampleRate.MS16);
-                    client.getSensorManager().registerAltimeterEventListener(mAltimeterEventListener);
-                    client.getSensorManager().registerHeartRateEventListener(mHeartRateEventListener);
+                    WelcomeActivity.this.startActivity(new Intent(WelcomeActivity.this, DesktopActivity.class));
+                    WelcomeActivity.this.finish();
+//                    client.getSensorManager().registerAccelerometerEventListener(mAccelerometerEventListener, SampleRate.MS16);
+//                    client.getSensorManager().registerGyroscopeEventListener(mGyroscopeEventListener, SampleRate.MS16);
+//                    client.getSensorManager().registerAltimeterEventListener(mAltimeterEventListener);
+//                    client.getSensorManager().registerHeartRateEventListener(mHeartRateEventListener);
                 } else {
                     appendToUI("Band isn't connected. Please make sure bluetooth is on and the band is in range.\n");
                 }
@@ -408,20 +341,6 @@ public class WelcomeActivity extends Activity {
             }
             return null;
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (client != null) {
-            try {
-                client.disconnect().await();
-            } catch (InterruptedException e) {
-                // Do nothing as this is happening during destroy
-            } catch (BandException e) {
-                // Do nothing as this is happening during destroy
-            }
-        }
-        super.onDestroy();
     }
 
     /**

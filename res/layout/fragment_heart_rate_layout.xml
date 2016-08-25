@@ -4,7 +4,10 @@
                 android:layout_height="match_parent">
 
     <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/fragment_heart_rate_line_chart"
         android:layout_width="match_parent"
-        android:layout_height="300dp"></com.github.mikephil.charting.charts.LineChart>
+        android:layout_height="300dp">
+
+    </com.github.mikephil.charting.charts.LineChart>
 
 </RelativeLayout>

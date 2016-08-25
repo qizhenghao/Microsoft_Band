@@ -11,13 +11,13 @@ import com.microsoft.band.BandClient;
  */
 public class BandApplication extends Application {
 
+    public static BandApplication INSTANCE;
     private static BandApplication mContext;
     private static Handler mApplicationHandler;
 
-    private BandClient client;
-
     @Override
     public void onCreate() {
+        INSTANCE = this;
         mContext = this;
         super.onCreate();
     }
@@ -32,14 +32,4 @@ public class BandApplication extends Application {
         }
         return mApplicationHandler;
     }
-
-    public BandClient getClient() {
-        return client;
-    }
-
-    public void setClient(BandClient client) {
-        this.client = client;
-    }
-
-
 }
