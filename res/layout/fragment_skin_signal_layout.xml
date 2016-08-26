@@ -13,12 +13,11 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/fragment_heart_rate_line_chart"
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/fragment_angular_x_barchar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </com.github.mikephil.charting.charts.LineChart>
+                android:layout_height="match_parent"
+                android:layout_above="@+id/seekbarValues"/>
         </LinearLayout>
 
         <LinearLayout
@@ -26,10 +25,11 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/fragment_heart_rate_temperature_chart"
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/fragment_angular_y_barchar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_above="@+id/seekbarValues"/>
         </LinearLayout>
 
         <LinearLayout
@@ -37,10 +37,12 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/fragment_heart_rate_resistance_chart"
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/fragment_angular_z_barchar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_above="@+id/seekbarValues"/>
         </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>

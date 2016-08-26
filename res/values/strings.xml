@@ -12,7 +12,8 @@
     <string name="start">Start</string>
     <string name="consent">Heart Rate Consent</string>
 
-    <string name="heart_rate">心率</string>
+    <string name="heart_rate">心率/肌电</string>
     <string name="acceleration">加速度</string>
     <string name="angular_velocity">角速度</string>
+    <string name="skin_signal">肌电</string>
 </resources>
