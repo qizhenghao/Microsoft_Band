@@ -1,6 +1,7 @@
 package com.dawei.band.desktop;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -45,6 +47,7 @@ public class DesktopActivity extends AppCompatActivity implements View.OnClickLi
     private AngularVelocityFragment angularVelocityFragment;
     private BandClient client;
     private Dialog connectDialog;
+    private long mExitTime;
 
 
     @Override
@@ -116,6 +119,12 @@ public class DesktopActivity extends AppCompatActivity implements View.OnClickLi
                 }
             };
             connectDialog.setCanceledOnTouchOutside(false);
+            connectDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                    return true;
+                }
+            });
         }
         connectDialog.show();
     }
@@ -239,5 +248,19 @@ public class DesktopActivity extends AppCompatActivity implements View.OnClickLi
         } else if (newConfig.orientation == this.getResources().getConfiguration().ORIENTATION_LANDSCAPE) {
 
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                Methods.showToast("再按一次退出程序", false);
+                mExitTime = System.currentTimeMillis();
+            } else {
+                finish();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
