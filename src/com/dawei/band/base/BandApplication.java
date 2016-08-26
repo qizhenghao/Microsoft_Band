@@ -1,6 +1,7 @@
 package com.dawei.band.base;
 
 import android.app.Application;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -15,6 +16,7 @@ public class BandApplication extends Application {
     public static BandClient client;
     private static BandApplication mContext;
     private static Handler mApplicationHandler;
+    private Typeface tfLight;
 
     @Override
     public void onCreate() {
@@ -32,5 +34,11 @@ public class BandApplication extends Application {
             mApplicationHandler = new Handler(Looper.getMainLooper());
         }
         return mApplicationHandler;
+    }
+
+    public Typeface getTfLight() {
+        if (tfLight == null)
+            tfLight = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
+        return tfLight;
     }
 }

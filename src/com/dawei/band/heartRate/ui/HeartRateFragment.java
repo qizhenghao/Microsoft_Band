@@ -73,7 +73,7 @@ public class HeartRateFragment extends BaseFragment {
         x.setEnabled(false);
 
         YAxis y = mChart.getAxisLeft();
-        mTfLight = Typeface.createFromAsset(mActivity.getAssets(), "OpenSans-Light.ttf");
+        mTfLight = BandApplication.INSTANCE.getTfLight();
         y.setTypeface(mTfLight);
         y.setLabelCount(6, false);
         y.setTextColor(Color.WHITE);
