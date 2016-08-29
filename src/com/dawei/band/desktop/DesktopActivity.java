@@ -24,7 +24,7 @@ import com.dawei.band.desktop.view.DesktopTabHost;
 import com.dawei.band.heartRate.ui.HeartRateFragment;
 import com.dawei.band.listeners.OnRefreshFragmentListener;
 import com.dawei.band.listeners.OnTabItemClickListener;
-import com.dawei.band.skinSignal.SkinSignalFragment;
+import com.dawei.band.home.HomeFragment;
 import com.dawei.band.utils.Methods;
 import com.dawei.band.utils.SystemStatusManager;
 import com.microsoft.band.BandClient;
@@ -46,7 +46,7 @@ public class DesktopActivity extends AppCompatActivity implements View.OnClickLi
     private HeartRateFragment heartRateFragment;
     private AccelerateFragment accelerateFragment;
     private AngularVelocityFragment angularVelocityFragment;
-    private SkinSignalFragment skinSignalFragment;
+    private HomeFragment homeFragment;
     private BandClient client;
     private Dialog connectDialog;
     private long mExitTime;
@@ -73,12 +73,12 @@ public class DesktopActivity extends AppCompatActivity implements View.OnClickLi
         heartRateFragment = new HeartRateFragment();
         accelerateFragment = new AccelerateFragment();
         angularVelocityFragment = new AngularVelocityFragment();
-        skinSignalFragment = new SkinSignalFragment();
+        homeFragment = new HomeFragment();
         fragmentList = new ArrayList<>();
         fragmentList.add(heartRateFragment);
         fragmentList.add(accelerateFragment);
         fragmentList.add(angularVelocityFragment);
-        fragmentList.add(skinSignalFragment);
+        fragmentList.add(homeFragment);
 
         viewPagerAdapter = new BaseFramentPagerAdapter(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapter);

@@ -1,4 +1,4 @@
-package com.dawei.band.skinSignal;
+package com.dawei.band.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,22 +9,12 @@ import android.view.ViewGroup;
 import com.dawei.band.R;
 import com.dawei.band.base.BandApplication;
 import com.dawei.band.base.BaseFragment;
-import com.github.mikephil.charting.data.Entry;
 import com.microsoft.band.BandClient;
-import com.microsoft.band.BandException;
-import com.microsoft.band.BandIOException;
-import com.microsoft.band.InvalidBandVersionException;
-import com.microsoft.band.sensors.BandGsrEvent;
-import com.microsoft.band.sensors.BandGsrEventListener;
-import com.microsoft.band.sensors.BandSkinTemperatureEvent;
-import com.microsoft.band.sensors.BandSkinTemperatureEventListener;
-import com.microsoft.band.sensors.GsrSampleRate;
-import com.microsoft.band.sensors.SampleRate;
 
 /**
  * Created by qizhenghao on 16/8/26.
  */
-public class SkinSignalFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment {
 
     private static final int TEMP_REFRESH_TIME = 1000;
     private static final int RESIST_REFRESH_TIME = 200;
@@ -36,7 +26,7 @@ public class SkinSignalFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mContentView = inflater.inflate(R.layout.fragment_angular_velocity_layout, null);
+        mContentView = inflater.inflate(R.layout.fragment_home_layout, null);
         return mContentView;
     }
 
