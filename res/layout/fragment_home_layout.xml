@@ -3,5 +3,73 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <EditText
+            android:id="@+id/fragment_home_ip_edit"
+            style="@style/common_blue_big_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:hint="输入服务IP"/>
+
+        <EditText
+            android:id="@+id/fragment_home_port_edit"
+            style="@style/common_blue_big_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="输入服务PORT"/>
+
+        <TextView
+            android:id="@+id/fragment_home_type_tv"
+            style="@style/common_blue_big_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/common_arrow_pressdown"
+            android:paddingLeft="30dp"
+            android:paddingRight="10dp"
+            android:text="请选择类型"/>
+
+        <Button
+            android:id="@+id/fragment_home_start_btn"
+            style="@style/common_blue_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:text="record"/>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/fragment_home_recoding_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/half_black_transparent">
+
+        <Button
+            android:id="@+id/fragment_home_stop_btn"
+            style="@style/common_red_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:text="stop"/>
+
+        <ProgressBar
+            android:layout_above="@id/fragment_home_stop_btn"
+            android:id="@+id/load_progressbar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            style="@style/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+    </RelativeLayout>
 </RelativeLayout>

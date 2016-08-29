@@ -218,9 +218,9 @@ public class HeartRateFragment extends BaseFragment {
         if (client == null)
             return;
         try {
-            client.getSensorManager().registerHeartRateEventListener(mHeartRateEventListener);
             client.getSensorManager().registerSkinTemperatureEventListener(skinTemperatureEventListener);
             client.getSensorManager().registerGsrEventListener(gsrEventListener, GsrSampleRate.MS200);
+            client.getSensorManager().registerHeartRateEventListener(mHeartRateEventListener);
         } catch (InvalidBandVersionException e) {
             e.printStackTrace();
         } catch (BandIOException e) {

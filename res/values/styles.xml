@@ -65,6 +65,12 @@
         <item name="android:textColor">@color/common_btn_font_white_selector</item>
     </style>
 
+    <!--红色按钮，无尺寸-->
+    <style name="common_red_button" parent="common_button">
+        <item name="android:background">@drawable/common_red_selector</item>
+        <item name="android:textColor">@color/common_btn_font_white_selector</item>
+    </style>
+
     <!--************************************* TextView **********************************-->
     <style name="common_tv">
         <item name="android:gravity">center</item>
@@ -120,5 +126,9 @@
         <!-- 模糊 -->
     </style>
 
+    <style name="Animations_BottomPush">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
 
 </resources>

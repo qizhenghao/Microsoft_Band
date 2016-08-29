@@ -75,17 +75,17 @@ public class DesktopActivity extends AppCompatActivity implements View.OnClickLi
         angularVelocityFragment = new AngularVelocityFragment();
         homeFragment = new HomeFragment();
         fragmentList = new ArrayList<>();
+        fragmentList.add(homeFragment);
         fragmentList.add(heartRateFragment);
         fragmentList.add(accelerateFragment);
         fragmentList.add(angularVelocityFragment);
-        fragmentList.add(homeFragment);
 
         viewPagerAdapter = new BaseFramentPagerAdapter(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapter);
         desktopTabHost.setViewPager(viewPager);
         viewPager.setOffscreenPageLimit(fragmentList.size());
 
-        desktopTabHost.setCurrentItem(0);
+        desktopTabHost.setCurrentItem(1);
     }
 
     private void initViews() {
