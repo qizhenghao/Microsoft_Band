@@ -16,7 +16,7 @@ import com.dawei.band.R;
 import com.dawei.band.base.BandApplication;
 import com.dawei.band.base.BaseFragment;
 import com.dawei.band.home.view.BottomPushPopupWindow;
-import com.dawei.band.utils.Config;
+import com.dawei.band.utils.AppConfig;
 import com.dawei.band.utils.Methods;
 import com.microsoft.band.BandClient;
 
@@ -101,14 +101,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                     Methods.showToast(typeTv.getText().toString(), false);
                     return;
                 }
-                Config.SERVER_IP = ip;
-                Config.SERVER_PORT = port;
-                Config.IS_UPLOADING.set(true);
+                AppConfig.SERVER_IP = ip;
+                AppConfig.SERVER_PORT = port;
+                AppConfig.IS_UPLOADING.set(true);
                 recordingLayout.setVisibility(View.VISIBLE);
                 break;
             case R.id.fragment_home_stop_btn:
                 recordingLayout.setVisibility(View.GONE);
-                Config.IS_UPLOADING.set(false);
+                AppConfig.IS_UPLOADING.set(false);
                 break;
         }
     }

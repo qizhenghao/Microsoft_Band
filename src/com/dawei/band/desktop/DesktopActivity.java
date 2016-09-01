@@ -21,7 +21,7 @@ import com.dawei.band.base.BandApplication;
 import com.dawei.band.base.BaseFragment;
 import com.dawei.band.desktop.adapter.BaseFramentPagerAdapter;
 import com.dawei.band.desktop.view.DesktopTabHost;
-import com.dawei.band.heartRate.ui.HeartRateFragment;
+import com.dawei.band.heartRate.HeartRateFragment;
 import com.dawei.band.listeners.OnRefreshFragmentListener;
 import com.dawei.band.listeners.OnTabItemClickListener;
 import com.dawei.band.home.HomeFragment;

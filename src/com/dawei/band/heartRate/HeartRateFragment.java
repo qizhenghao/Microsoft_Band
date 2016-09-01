@@ -1,4 +1,4 @@
-package com.dawei.band.heartRate.ui;
+package com.dawei.band.heartRate;
 
 import android.graphics.Color;
 import android.os.Bundle;

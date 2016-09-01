@@ -13,12 +13,15 @@ apply plugin: 'com.android.application'
 
 repositories {
     maven { url "https://jitpack.io" }
+    jcenter()
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
+    compile fileTree(include: '*.jar', dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
+    compile 'com.loopj.android:android-async-http:1.4.9'
+//    compile 'com.jakewharton:butterknife:7.0.1'
 }
 
 android {
