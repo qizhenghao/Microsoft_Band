@@ -15,7 +15,7 @@ import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Created by qizhenghao on 16/8/29.
+ * Created by qizhenghao on 16/8/29. 。
  */
 public class AppConfig {
 
